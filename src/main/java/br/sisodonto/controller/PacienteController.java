@@ -8,6 +8,7 @@ package br.sisodonto.controller;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
+import br.sisodonto.dao.PacienteDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -20,19 +21,19 @@ import javax.inject.Inject;
 public class PacienteController {
 
     private final Result result;
-
-    /**
-     * @deprecated CDI eyes only
-     */
-    protected PacienteController() {
-        this(null);
-    }
-
-    @Inject
-    public PacienteController(Result result) {
+    private final PacienteDAO pacienteDAO;
+    
+    @Inject    
+    public PacienteController(Result result, PacienteDAO pacienteDAO) {
         this.result = result;
+        this.pacienteDAO = pacienteDAO;
     }
 
+    @Path("/")
+    public void home() {        
+                
+        result.include("pacientes", pacienteDAO.listAll());
+    }
     
     
 }
