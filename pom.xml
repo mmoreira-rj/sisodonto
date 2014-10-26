@@ -20,7 +20,7 @@
         <dependency>
             <groupId>br.com.caelum.vraptor</groupId>
             <artifactId>vraptor-jpa</artifactId>
-            <version>4.0.0-RC2</version>
+            <version>4.0.2</version> <!-- ou a última versão disponível -->
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
