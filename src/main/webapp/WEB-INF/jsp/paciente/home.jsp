@@ -32,7 +32,7 @@
                                 <a href="<c:url value="/paciente/editar/${p.codigo}"/>" class="btn btn-default">
                                     Editar
                                 </a>
-                                <a href="<c:url value="/paciente/excluir/${p.codigo}"/>" class="btn btn-default">
+                                <a href="javascript:excluir(${p.codigo})" class="btn btn-default">
                                     Excluir
                                 </a>
                             </td>
@@ -43,4 +43,11 @@
         </div>
     </div>
 </div> <!-- /container -->
+<script type="text/javascript">
+    function excluir(codigo) {
+        if (confirm("Deseja remover este paciente?")) {
+            window.location = '<c:url value="/paciente/excluir/"/>' + codigo;
+        }
+    }
+</script>
 <%@ include file="/footer.jsp" %> 

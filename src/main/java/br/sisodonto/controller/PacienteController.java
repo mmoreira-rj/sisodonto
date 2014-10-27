@@ -51,7 +51,15 @@ public class PacienteController {
         result.include("p", paciente);
     
     }
+    
+    @Path("/paciente/excluir/{codigo}")
+    public void excluir(Integer codigo) {
 
+        pacienteDAO.excluir(codigo);
+    
+        result.redirectTo(PacienteController.class).home();
+        
+    }
     @Path("/paciente/salvar")
     public void salvar(Paciente paciente) {
 
@@ -76,10 +84,6 @@ public class PacienteController {
             pacienteDAO.salvar(paciente);
         }
         
-        
-
-        
-
         result.redirectTo(PacienteController.class).home();
 
     }

@@ -30,8 +30,6 @@ public class PacienteDAO {
 
     public void salvar(Paciente paciente) {
 
-        System.out.println(paciente);
-
         entityManager.getTransaction().begin();
         
         try {
@@ -61,6 +59,26 @@ public class PacienteDAO {
 
         return entityManager.find(Paciente.class, codigo);
 
+    }
+
+    public void excluir(Integer codigo) {
+     
+        entityManager.getTransaction().begin();
+        
+        try {
+            
+            Paciente paciente = this.buscarPorCodigo(codigo);
+            entityManager.remove(paciente);
+            
+            entityManager.getTransaction().commit();
+            
+        } catch(Exception e) {
+            
+            System.out.println("erro>" + e.getMessage() );
+            
+            entityManager.getTransaction().rollback();
+        }
+        
     }
     
 }
