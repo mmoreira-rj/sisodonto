@@ -28,6 +28,11 @@ public class PacienteController {
     @Inject
     private PacienteDAO pacienteDAO;
 
+    @Path("/")
+    public void index() {
+        result.redirectTo(PacienteController.class).home();
+    }
+    
     @Path("/pacientes")
     public void home() {
 
@@ -56,14 +61,13 @@ public class PacienteController {
             p.setNome(paciente.getNome());
             p.setDataNascimento(paciente.getDataNascimento());
             p.setCpf(paciente.getCpf());
-            p.setRg(paciente.getRg());
-            p.setDataCadastro(paciente.getDataCadastro());
+            p.setRg(paciente.getRg());            
             p.setLogradouro(paciente.getLogradouro());
             p.setNumero(paciente.getNumero());
             p.setComplemento(paciente.getComplemento());
             p.setBairro(paciente.getBairro());
             p.setCidade(paciente.getCidade());
-            p.setEstado(paciente.getEstado());
+            p.setEstado(paciente.getEstado());            
             
             pacienteDAO.salvar(p);
             
