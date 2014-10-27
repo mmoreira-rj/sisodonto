@@ -34,6 +34,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p")})
 public class Paciente implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,10 +62,25 @@ public class Paciente implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
-    @JoinColumn(name = "codigo_endereco", referencedColumnName = "codigo")
-    @ManyToOne
-    private Endereco codigoEndereco;
 
+    @Column
+    private String logradouro;
+    
+    @Column
+    private String numero;
+    
+    @Column
+    private String complemento;
+    
+    @Column
+    private String bairro;
+    
+    @Column
+    private String cidade;
+    
+    @Column
+    private String cep;
+            
     public Paciente() {
     }
 
@@ -127,13 +143,55 @@ public class Paciente implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public Endereco getCodigoEndereco() {
-        return codigoEndereco;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setCodigoEndereco(Endereco codigoEndereco) {
-        this.codigoEndereco = codigoEndereco;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    
 
     @Override
     public int hashCode() {
@@ -157,7 +215,8 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.sisodonto.entity.Paciente[ codigo=" + codigo + " ]";
+        return "Paciente{" + "codigo=" + codigo + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", cpf=" + cpf + ", rg=" + rg + ", dataCadastro=" + dataCadastro + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + ", cep=" + cep + '}';
     }
+
     
 }

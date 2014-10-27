@@ -45,3 +45,14 @@ WITH (
 );
 ALTER TABLE paciente
   OWNER TO postgres;
+
+ALTER TABLE paciente
+  ADD COLUMN logradouro character varying(100);
+ALTER TABLE paciente
+  ADD COLUMN numero character varying(40);
+ALTER TABLE paciente
+  ADD COLUMN complemento character varying(40);
+ALTER TABLE paciente
+  ADD COLUMN bairro character varying(100);
+ALTER TABLE paciente
+  ADD COLUMN cidade character varying(100);
