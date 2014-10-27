@@ -1,7 +1,7 @@
 <%@ include file="/header.jsp" %> 
 <div class="container">
     <div class="page-header">
-        <h1>Pacientes cadastros no sistema</h1>
+        <h1>Pacientes registrados no Sistema</h1>
     </div>
     <div>
         <div class="table-responsive">
@@ -20,12 +20,22 @@
                             <td colspan="4">Nenhum Paciente Cadastrado</td>
                         </tr>
                     </c:if>
-                    <c:forEach items="${paciente}" var="p">
+                    <c:forEach items="${pacientes}" var="p">
                         <tr>
+                            
                             <td><c:out value="${p.cpf}" /></td>
                             <td><c:out value="${p.nome}" /></td>
-                            <td><c:out value="${p.dataNascimento}" /></td>
-                            <td></td>
+                            <td>
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${p.dataNascimento}" />
+                            </td>
+                            <td>
+                                <a href="<c:url value="/paciente/editar/${p.codigo}"/>" class="btn btn-default">
+                                    Editar
+                                </a>
+                                <a href="<c:url value="/paciente/excluir/${p.codigo}"/>" class="btn btn-default">
+                                    Excluir
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
