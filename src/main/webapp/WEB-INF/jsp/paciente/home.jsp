@@ -35,6 +35,9 @@
                                 <a href="javascript:excluir(${p.codigo})" class="btn btn-default">
                                     Excluir
                                 </a>
+                                <a href="<c:url value="/paciente/${p.codigo}"/>" class="btn btn-default">
+                                    Visualizar
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

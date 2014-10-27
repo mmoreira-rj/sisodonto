@@ -39,6 +39,11 @@ public class PacienteController {
         result.include("pacientes", pacienteDAO.listAll());
     }
 
+    @Path("/paciente/{codigo}")
+    public void visualizar(Integer codigo) {
+        result.include("paciente", pacienteDAO.buscarPorCodigo(codigo));
+    }
+    
     @Path("/paciente/novo")
     public void novo() {
     }
