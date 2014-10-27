@@ -9,7 +9,9 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.sisodonto.dao.PacienteDAO;
+import br.sisodonto.entity.Paciente;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -20,20 +22,30 @@ import javax.inject.Inject;
 @Controller
 public class PacienteController {
 
-    private final Result result;
-    private final PacienteDAO pacienteDAO;
-    
     @Inject    
-    public PacienteController(Result result, PacienteDAO pacienteDAO) {
-        this.result = result;
-        this.pacienteDAO = pacienteDAO;
-    }
+    private Result result;
+    
+    @Inject
+    private PacienteDAO pacienteDAO;
 
-    @Path("/")
+    @Path("/pacientes")
     public void home() {        
-                
+        
         result.include("pacientes", pacienteDAO.listAll());
     }
-    
+ 
+    @Path("/paciente/novo")
+    public void novo() { }
+
+    @Path("/paciente/salvar")
+    public void salvar(Paciente paciente) {
+        
+        paciente.setDataCadastro(Calendar.getInstance().getTime());
+        
+        pacienteDAO.salvar(paciente);
+        
+        result.redirectTo(PacienteController.class).home();
+     
+    }
     
 }

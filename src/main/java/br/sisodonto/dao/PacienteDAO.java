@@ -15,18 +15,9 @@ import javax.persistence.EntityManager;
  * @author marcio.moreira
  */
 public class PacienteDAO {
-    
-    private final EntityManager entityManager;
-    
-    public PacienteDAO() {
-        this(null);
-    }
-    
+
     @Inject
-    public PacienteDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
- 
+    private EntityManager entityManager;
     
     public List<Paciente> listAll() {
         
@@ -35,5 +26,14 @@ public class PacienteDAO {
                    .getResultList();
         
     }
-    
+
+    public void salvar(Paciente paciente) {
+        
+        if (paciente.getCodigo() != null) {
+            entityManager.persist(paciente);
+        } else {
+            entityManager.merge(paciente);
+        }
+    }
+        
 }

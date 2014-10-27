@@ -44,8 +44,8 @@
         </div>
         <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="<c:url value="/" />">Principal</a></li>
-            <li><a href="<c:url value="/" />">Pacientes</a></li>            
+            <li class="active"><a href="<c:url value="/pacientes" />">Pacientes</a></li>
+            <li><a href="<c:url value="/paciente/novo" />">Cadastrar Paciente</a></li>            
         </ul>
         <ul class="nav navbar-nav navbar-right">        
             <li class="active"><a href="./">Sair</a></li>
