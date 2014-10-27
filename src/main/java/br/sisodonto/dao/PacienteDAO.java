@@ -35,5 +35,11 @@ public class PacienteDAO {
             entityManager.merge(paciente);
         }
     }
+
+    public Paciente buscarPorCodigo(Integer codigo) {
+        
+        return entityManager.find(Paciente.class, codigo);
+        
+    }
         
 }

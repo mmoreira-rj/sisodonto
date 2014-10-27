@@ -22,30 +22,62 @@ import javax.inject.Inject;
 @Controller
 public class PacienteController {
 
-    @Inject    
+    @Inject
     private Result result;
-    
+
     @Inject
     private PacienteDAO pacienteDAO;
 
     @Path("/pacientes")
-    public void home() {        
-        
+    public void home() {
+
         result.include("pacientes", pacienteDAO.listAll());
     }
- 
+
     @Path("/paciente/novo")
-    public void novo() { }
+    public void novo() {
+    }
+
+    @Path("/paciente/editar/{codigo}")
+    public void editar(Integer codigo) {
+
+        Paciente paciente = pacienteDAO.buscarPorCodigo(codigo);
+
+        result.include("p", paciente);
+    
+    }
 
     @Path("/paciente/salvar")
     public void salvar(Paciente paciente) {
+
+        if (! (paciente.getCodigo() == null)) {
+            
+            Paciente p = pacienteDAO.buscarPorCodigo(paciente.getCodigo());
+            p.setNome(paciente.getNome());
+            p.setDataNascimento(paciente.getDataNascimento());
+            p.setCpf(paciente.getCpf());
+            p.setRg(paciente.getRg());
+            p.setDataCadastro(paciente.getDataCadastro());
+            p.setLogradouro(paciente.getLogradouro());
+            p.setNumero(paciente.getNumero());
+            p.setComplemento(paciente.getComplemento());
+            p.setBairro(paciente.getBairro());
+            p.setCidade(paciente.getCidade());
+            p.setEstado(paciente.getEstado());
+            
+            pacienteDAO.salvar(p);
+            
+        } else {
+            paciente.setDataCadastro(Calendar.getInstance().getTime());
+            pacienteDAO.salvar(paciente);
+        }
         
-        paciente.setDataCadastro(Calendar.getInstance().getTime());
         
-        pacienteDAO.salvar(paciente);
+
         
+
         result.redirectTo(PacienteController.class).home();
-     
+
     }
-    
+
 }

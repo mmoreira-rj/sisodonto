@@ -79,6 +79,9 @@ public class Paciente implements Serializable {
     private String cidade;
     
     @Column
+    private String estado;
+    
+    @Column
     private String cep;
             
     public Paciente() {
@@ -191,6 +194,16 @@ public class Paciente implements Serializable {
         this.cep = cep;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
+    
     
 
     @Override
